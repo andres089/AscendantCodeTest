@@ -24,9 +24,13 @@ Luego de tener el token se crearon dos métodos los cuales son CalculateTaxesOrd
 #Ejemplo de GetTaxRatesLocation()
 
 Url
+
 https://localhost:44351/GetTaxRatesLocation?zip=90404
+
 Request
+
 https://localhost:44351/GetTaxRatesLocation?zip=90404
+
 Response
 {
    "message": null,
