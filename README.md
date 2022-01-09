@@ -1,31 +1,33 @@
 # AscendantCodeTest
-Se crea solucion el cual recibe un token este token se genera por medio del consumo del metodo Token Get() el cual recibe un usuario y retorna el token y el cual expira en 5 minutos, el cual se podra cambiar a mas tiempo.
- #Ejemplo para consumo del token 
+Se creo algunos métodos, los cuales recibe un token en el Header, este token se genera por medio del consumo del método Token/Get() y el cual es creado por medio de Json Web Token (JWT) el cual recibe un usuario y contraseña y retorna el token y el cual expira en 5 minutos, el cual se podrá cambiar a más tiempo según sea la solicitud. 
 
-{
-"Name": "Ascendant",
-"Pasword": "Ascendant"
-}
+#Ejemplo para consumo del token
+Login
 
-#Ejemplo de resultado del consumo del token 
+Usuario: Ascendant
+Contraseña: Ascendant
 
-{
-   "message": "",
-   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkFzY2VuZGFudCIsIm5iZiI6MTY0MTc2NTA3OCwiZXhwIjoxNjQxNzY1NDM4LCJpYXQiOjE2NDE3NjUwNzh9.Ug2VHGxrcPKweXDz1_z8EE7X7IvRFkCEjGQYffAFciE",
-   "type": "Bearer",
-   "expira": 5
-}
+Url
 
-Luego de tener el token se crearon dos metodos los cuales son CalculateTaxesOrder() y GetTaxRatesLocation() los cuales se recibe en el Header la "Authorization" el token Generado enteriormente con la palaba Bearer antes del token:
+https://localhost:44351/token 
 
-##Metodo GetTaxRatesLocation()
+Request
 
-#Ejemplo de url con el parametro 
+{ "Name": "Ascendant", "Pasword": "Ascendant" }
 
+Response
+
+{ "message": "", "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkFzY2VuZGFudCIsIm5iZiI6MTY0MTc2NTA3OCwiZXhwIjoxNjQxNzY1NDM4LCJpYXQiOjE2NDE3NjUwNzh9.Ug2VHGxrcPKweXDz1_z8EE7X7IvRFkCEjGQYffAFciE", "type": "Bearer", "expira": 5 }
+
+Luego de tener el token se crearon dos métodos los cuales son CalculateTaxesOrder() y GetTaxRatesLocation() los cuales se recibe en el Header la "Authorization" el cual es el token Generado anteriormente con la palaba Bearer
+
+#Ejemplo de GetTaxRatesLocation()
+
+Url
 https://localhost:44351/GetTaxRatesLocation?zip=90404
-
-#Ejemplo de retorno del consumo del metodo 
-
+Request
+https://localhost:44351/GetTaxRatesLocation?zip=90404
+Response
 {
    "message": null,
    "rate":    {
@@ -44,36 +46,13 @@ https://localhost:44351/GetTaxRatesLocation?zip=90404
    }
 }
 
-##Metodo GetTaxRatesLocation()
+#Ejemplo de CalculateTaxesOrder ()
 
-#Ejemplo de url con el parametro 
+Url
 
-https://localhost:44351/GetTaxRatesLocation?zip=90404
+https://localhost:44351/CalculateTaxesOrder 
 
-#Ejemplo de retorno del consumo del metodo 
-
-{
-   "message": null,
-   "rate":    {
-      "city": "SANTA MONICA",
-      "city_rate": 0,
-      "combined_district_rate": 0.03,
-      "combined_rate": 0.1025,
-      "country": "US",
-      "country_rate": 0,
-      "county": "LOS ANGELES",
-      "county_rate": 0.01,
-      "freight_taxable": false,
-      "state": "CA",
-      "state_rate": 0.0625,
-      "zip": "90404"
-   }
-}
-
-##Metodo CalculateTaxesOrder()
-
-#Ejemplo de url de request 
-
+Request
 {
 	"to_country": "US",
 	"to_zip": "90002",
@@ -81,9 +60,7 @@ https://localhost:44351/GetTaxRatesLocation?zip=90404
 	"amount": 15,
 	"shipping": 1.5
 }
-
-#Ejemplo de retorno del consumo del metodo 
-
+Response
 {
    "message": null,
    "tax":    {
@@ -99,8 +76,9 @@ https://localhost:44351/GetTaxRatesLocation?zip=90404
    }
 }
 
-Para la creacion de este proyecto solo se vio necesario el manejo de 2 capas, la capa de usuario y la capa de negocio, aunque en la capa de negocio se dividio los modelos de los servicios externos y el manejo de HttpClient  
-en este ultimo se implento un patron fabrica el cual si tendríamos varias Calculadoras de impuestos, el servicio de impuestos podra decidir cuál usar en función del Cliente.
+Para la creación de este proyecto solo se vio necesario el manejo de 2 capas, la capa de usuario y la capa de negocio, aunque en la capa de negocio se divide los modelos de los servicios externos y el manejo de HttpClient.
+
+En este último se implementó un patrón fabrica el cual si tuviéramos varias Calculadoras de impuestos, el servicio de impuestos podrá decidir cuál usar en función del Cliente.
 
 
 
