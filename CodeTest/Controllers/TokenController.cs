@@ -30,7 +30,7 @@ namespace CodeTest.Controllers
             TokenResponse tokenResponse = new TokenResponse();
             if (user == null || user.Name == null || user.Pasword == null || string.IsNullOrWhiteSpace(user.Name) || string.IsNullOrWhiteSpace(user.Pasword))
             {
-                tokenResponse.Mensaje = "user and pasword is requerid.";
+                tokenResponse.Message = "user and pasword is requerid.";
                 return Ok(tokenResponse);
             }
             
@@ -38,7 +38,7 @@ namespace CodeTest.Controllers
 
             if (!userResponse)
             {
-                tokenResponse.Mensaje = "User and Pasword incorrect.";
+                tokenResponse.Message = "User and Pasword incorrect.";
                 return Ok(tokenResponse);
             }
 

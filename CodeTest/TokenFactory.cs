@@ -51,7 +51,7 @@ namespace CodeTest.Controllers
                 Expira = (int)(expires - DateTime.UtcNow).TotalMinutes,
                 Type = "Bearer",
                 Token = tokenHandler.WriteToken(token),
-                Mensaje = string.Empty
+                Message = string.Empty
             };
         }
     }

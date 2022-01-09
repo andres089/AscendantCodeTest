@@ -7,7 +7,7 @@ namespace CodeTest.Business.Entities
 {
     public class TokenResponse
     {
-        public string Mensaje { get; set; }
+        public string Message { get; set; }
 
         [JsonProperty("access_token")]
         public string Token { get; set; }
